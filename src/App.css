@@ -1,0 +1,15 @@
+#experience-wrapper {
+  position: fixed;
+  inset: 0;
+  transform-origin: center center;
+  will-change: transform;
+  border-radius: 0px;
+  /* overflow: hidden; */
+  z-index: 1;
+}
+
+canvas {
+  height: 100%;
+  width: 100%;
+  touch-action: none;
+}

@@ -24,6 +24,7 @@ const Experience = () => {
   const isExperienceReady = useExperienceStore(
     (state) => state.isExperienceReady,
   );
+  const isInfoPanelOpen = useExperienceStore((state) => state.isInfoPanelOpen);
 
   const [lenis, setLenis] = useState(null);
 
@@ -31,12 +32,12 @@ const Experience = () => {
     const lenisInstance = lenis?.lenis;
     if (!lenisInstance) return;
 
-    if (isExperienceReady) {
+    if (isExperienceReady && !isInfoPanelOpen) {
       lenisInstance.start();
     } else {
       lenisInstance.stop();
     }
-  }, [isExperienceReady, lenis]);
+  }, [isExperienceReady, isInfoPanelOpen, lenis]);
 
   useEffect(() => {
     const lenisInstance = lenis?.lenis;
@@ -72,10 +73,12 @@ const Experience = () => {
         }}
       >
         <Canvas
+          id="canvas-container"
           style={{
             position: "fixed",
             top: 0,
             left: 0,
+            transformOrigin: "center center",
           }}
           flat
           gl={async (props) => {
