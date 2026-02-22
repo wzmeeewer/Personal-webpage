@@ -98,6 +98,63 @@ const LoadingScreen = () => {
             </div>
             <h1 className="title">Aimee Wei's PaperCraft World</h1>
 
+            {/* Lol don't do this this is cringe */}
+            <div
+              style={{
+                backgroundImage: 'url("/images/head_smile.webp")',
+                width: 0,
+                height: 0,
+                visibility: "hidden",
+                position: "absolute",
+              }}
+            />
+
+            <div
+              style={{
+                backgroundImage: 'url("/images/head.webp")',
+                width: 0,
+                height: 0,
+                visibility: "hidden",
+                position: "absolute",
+              }}
+            />
+            <div
+              style={{
+                backgroundImage: 'url("/images/red.webp")',
+                width: 0,
+                height: 0,
+                visibility: "hidden",
+                position: "absolute",
+              }}
+            />
+            <div
+              style={{
+                backgroundImage: 'url("/images/blue.webp")',
+                width: 0,
+                height: 0,
+                visibility: "hidden",
+                position: "absolute",
+              }}
+            />
+            <div
+              style={{
+                backgroundImage: 'url("/images/green.webp")',
+                width: 0,
+                height: 0,
+                visibility: "hidden",
+                position: "absolute",
+              }}
+            />
+            <div
+              style={{
+                backgroundImage: 'url("/images/orange.webp")',
+                width: 0,
+                height: 0,
+                visibility: "hidden",
+                position: "absolute",
+              }}
+            />
+
             <a
               href="https://github.com/andrewwoan/mr-pandas-psychologically-safe-portfolio"
               className="credits-link"

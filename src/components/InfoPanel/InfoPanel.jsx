@@ -34,7 +34,48 @@ const InfoPanel = () => {
       className="info-panel"
       style={{ backgroundImage: `url(${seasonImages[season]})` }}
     >
-      hello universe
+      <div className="info-box">
+        <div className="info-box-content">
+          <div className="info-box-title">Credits:</div>
+
+          <p className="info-intro">
+            This repo contains code of Aimee's Papercraft Portfolio for a
+            Codrops article and YouTube tutorial!! Name and details are
+            anonymoized for privacy. See full list of credits, code and Blender
+            files on{" "}
+            <a
+              href="https://github.com/andrewwoan/aimee-weis-papercraft-world"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+            ! and. Feel free to reach out if you got any questions or just wanna
+            say hi!
+          </p>
+
+          <ul className="info-list">
+            {/* <li>
+              UI Design inspired by
+              <a
+                href="https://github.com/wehwayne2/lucys-bedroom-interface"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Xianyao Wei
+              </a>
+              .
+            </li>
+            <li>
+              3D curve system inspired by{" "}
+              <a href="https://github.com" target="_blank" rel="noreferrer">
+                this open source repo
+              </a>
+              .
+            </li> */}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
