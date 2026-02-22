@@ -10,9 +10,12 @@ This repo contains code of Aimee's Papercraft Portfolio for a Codrops article an
 
 - [Paper Material](https://superhivemarket.com/products/crafty-asset-pack)
 - [Winter Inspiration](https://www.amazon.com/Laeacco-Christmas-Grassland-Paper-Cut-Background/dp/B07J57237R?th=1)
+- [Xianyao Wei's UI Design](https://github.com/wehwayne2/lucys-bedroom-interface)
 - [Joshua's World Inspiration](https://www.awwwards.com/sites/joshuas-world)
 - [Bilal Show Inspiration](https://bilal.show/)
-- [Xianyao Wei's UI Design](https://github.com/wehwayne2/lucys-bedroom-interface)
+- [Dragon is dragonair From Pokemon](https://www.pokemon.com/us/pokedex/dragonair)
+- [Slime is from Genshin Impact](https://genshin-impact.fandom.com/wiki/Hydro_Slime)
+- [Star is from Mario](https://www.mariowiki.com/Super_Star)
 
 # Extra info
 
