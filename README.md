@@ -16,7 +16,10 @@ This repo contains code of Aimee's Papercraft Portfolio for a Codrops article an
 - [Dragon is dragonair From Pokemon](https://www.pokemon.com/us/pokedex/dragonair)
 - [Slime is from Genshin Impact](https://genshin-impact.fandom.com/wiki/Hydro_Slime)
 - [Guoba is from Genshin Impact](https://wiki.hoyolab.com/pc/genshin/entry/2552?lang=en-us)
-- [Star is from Mario](https://www.mariowiki.com/Super_Star)
+- [Austin, Texas Image is from MJ Tangonan](https://unsplash.com/photos/river-near-buildings-during-daytime-wKfTNWaDYgs)
+- [San Fransico, California Image is from Maarten van den Heuvel](https://unsplash.com/photos/golden-gate-bridge-during-daytime-gZXx8lKAb7Y)
+- [Boston, Massachusetts Image is from Jimmy Woo](https://unsplash.com/photos/a-view-of-a-city-from-across-the-water-SUMtPksZXBE)
+- [Shanghai, China Image is from evening_tao](https://www.freepik.com/free-photo/shanghai-skyline-sunny-day-china_1175772.htm#fromView=keyword&page=1&position=2&uuid=ca27e057-0f78-4ebf-a82c-8ecec217205d&query=Shanghai+china)
 
 # Extra info
 
