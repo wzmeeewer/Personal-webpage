@@ -184,7 +184,7 @@ const LoadingScreen = () => {
                 color: "rgb(233, 233, 233)",
               }}
             >
-              Swipe/Scroll to navigate!
+              ~ Swipe/Scroll to navigate ~
             </div>
           </>
         )}
