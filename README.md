@@ -9,6 +9,7 @@ This repo contains code of Aimee's Papercraft Portfolio for a Codrops article an
 # Credits!!! 💖
 
 - [Paper Material](https://superhivemarket.com/products/crafty-asset-pack)
+- [Slime Box Font](https://www.fontspace.com/slime-box-font-f29820)
 - [Winter Inspiration](https://www.amazon.com/Laeacco-Christmas-Grassland-Paper-Cut-Background/dp/B07J57237R?th=1)
 - [Xianyao Wei's UI Design](https://github.com/wehwayne2/lucys-bedroom-interface)
 - [Joshua's World Inspiration](https://www.awwwards.com/sites/joshuas-world)
