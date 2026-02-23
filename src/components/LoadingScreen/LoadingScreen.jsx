@@ -178,7 +178,7 @@ const LoadingScreen = () => {
               style={{
                 position: "absolute",
                 left: "50%",
-                bottom: "300px",
+                bottom: "250px",
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
