@@ -57,21 +57,23 @@ export const paperMat = (color) => (
   <meshBasicMaterial color={color} side={THREE.DoubleSide} toneMapped={false} />
 );
 
+const BASE = import.meta.env.BASE_URL;
+
 export const PAPER_TEXTURES = {
-  wood: "/textures/paper/wood.webp",
-  cream: "/textures/paper/cream_paper.webp",
-  pink: "/textures/paper/pink_paper.webp",
-  yellow: "/textures/paper/yellow_paper.webp",
-  warmOrange: "/textures/paper/warm_orange_paper.webp",
-  decorativeBack: "/textures/paper/decorative_back.webp",
-  quiltFabric:  "/textures/paper/quilt_fabric.webp",
-  pillowFabric: "/textures/paper/pillow_fabric.webp",
-  rugFabric:    "/textures/paper/rug_fabric.webp",
-  darkWood:     "/textures/paper/dark_wood.webp",
-  whiteWood:    "/textures/paper/white_wood.webp",
-  linenBook:    "/textures/paper/linen_book.webp",
-  cardboard:    "/textures/paper/cardboard.webp",
-  shirtFabric:  "/textures/paper/shirt_fabric.webp",
+  wood: `${BASE}textures/paper/wood.webp`,
+  cream: `${BASE}textures/paper/cream_paper.webp`,
+  pink: `${BASE}textures/paper/pink_paper.webp`,
+  yellow: `${BASE}textures/paper/yellow_paper.webp`,
+  warmOrange: `${BASE}textures/paper/warm_orange_paper.webp`,
+  decorativeBack: `${BASE}textures/paper/decorative_back.webp`,
+  quiltFabric:  `${BASE}textures/paper/quilt_fabric.webp`,
+  pillowFabric: `${BASE}textures/paper/pillow_fabric.webp`,
+  rugFabric:    `${BASE}textures/paper/rug_fabric.webp`,
+  darkWood:     `${BASE}textures/paper/dark_wood.webp`,
+  whiteWood:    `${BASE}textures/paper/white_wood.webp`,
+  linenBook:    `${BASE}textures/paper/linen_book.webp`,
+  cardboard:    `${BASE}textures/paper/cardboard.webp`,
+  shirtFabric:  `${BASE}textures/paper/shirt_fabric.webp`,
 };
 
 export const Box = ({ color, position, rotation, scale }) => (
