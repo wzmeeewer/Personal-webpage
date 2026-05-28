@@ -36,6 +36,7 @@ const compressionReport = () => ({
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/Personal-webpage/",
   plugins: [react(), compressionReport()],
   build: {
     chunkSizeWarningLimit: 1800,
