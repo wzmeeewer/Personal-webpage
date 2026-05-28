@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Slime Box", sans-serif;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,7 +24,35 @@ html {
   /* overflow: hidden; */
   overflow-y: auto;
   overflow-x: hidden;
-  font-family: "Slime Box";
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Slime Box", sans-serif;
+}
+
+.visually-hidden,
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.browser-compatibility-message {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #fff5ea, #ffd9cc 48%, #ffe39b);
+  color: #7c3f3b;
+  font-family: "Microsoft YaHei UI", "PingFang SC", sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: center;
 }
 
 html {

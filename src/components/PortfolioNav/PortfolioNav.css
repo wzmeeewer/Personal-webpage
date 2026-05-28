@@ -1,0 +1,86 @@
+.portfolio-nav {
+  position: fixed;
+  left: 50%;
+  top: 18px;
+  z-index: 12;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 1px solid rgba(126, 79, 66, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 248, 236, 0.72);
+  box-shadow: 0 12px 30px rgba(126, 79, 66, 0.14);
+  backdrop-filter: blur(10px);
+  transform: translateX(-50%);
+}
+
+.portfolio-nav button {
+  min-width: 54px;
+  height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #7c3f3b;
+  font-family: "Microsoft YaHei UI", "PingFang SC", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.portfolio-nav button:hover,
+.portfolio-nav button.is-active {
+  background: rgba(255, 194, 129, 0.42);
+  color: #6b342f;
+}
+
+.portfolio-nav button:hover {
+  transform: translateY(-1px);
+}
+
+.portfolio-nav button.is-clicked {
+  animation: nav-click-bounce 0.2s ease-out;
+}
+
+@keyframes nav-click-bounce {
+  0% {
+    transform: scale(1);
+  }
+
+  55% {
+    transform: scale(0.92);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav {
+    top: 10px;
+    width: calc(100% - 20px);
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 6px;
+    scrollbar-width: none;
+  }
+
+  .portfolio-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolio-nav button {
+    flex: 0 0 auto;
+    min-width: 48px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}

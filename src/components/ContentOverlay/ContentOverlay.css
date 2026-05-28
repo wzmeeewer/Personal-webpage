@@ -1,0 +1,780 @@
+/* ─────────────────────────────────────────
+   Design tokens
+───────────────────────────────────────── */
+:root {
+  --co-paper-cream: #fff8ee;
+  --co-paper-warm:  #fff5e6;
+  --co-text-dark:   #4a3528;
+  --co-text-title:  #6b3a3a;
+  --co-accent-gold: #c49a6c;
+  --co-divider:     #d4b896;
+  --co-shadow:      rgba(0, 0, 0, 0.12);
+  --co-font:        'Microsoft YaHei UI', 'PingFang SC', sans-serif;
+}
+
+/* ─────────────────────────────────────────
+   Overlay backdrop
+───────────────────────────────────────── */
+.co-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  font-family: var(--co-font);
+}
+
+.co-container {
+  max-width: 800px;
+  width: 95vw;
+  position: relative;
+  animation: co-slide-up 0.4s ease-out both;
+}
+
+/* Universal close button (shown for cards / notebook / envelope) */
+.co-close-btn {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  transition: background 0.15s ease, transform 0.15s ease;
+  color: var(--co-text-dark);
+  z-index: 20;
+  line-height: 1;
+}
+
+.co-close-btn:hover {
+  background: #e05a4e;
+  color: white;
+  transform: scale(1.12);
+}
+
+@keyframes co-slide-up {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ─────────────────────────────────────────
+   BOOK — cover
+───────────────────────────────────────── */
+.book-cover-outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.book-cover {
+  width: 340px;
+  height: 480px;
+  border-radius: 3px 8px 8px 3px;
+  box-shadow:
+    -5px 0 12px rgba(0, 0, 0, 0.35),
+    4px 4px 24px rgba(0, 0, 0, 0.28);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.book-cover:hover {
+  transform: scale(1.025) rotate(-0.8deg);
+  box-shadow:
+    -8px 0 18px rgba(0, 0, 0, 0.4),
+    6px 6px 30px rgba(0, 0, 0, 0.32);
+}
+
+.book-cover-spine {
+  width: 26px;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.book-cover-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 28px;
+  gap: 14px;
+}
+
+.book-cover-deco {
+  width: 55%;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.38);
+  border-radius: 1px;
+}
+
+.book-cover-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+}
+
+.book-cover-rule {
+  width: 38%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.book-cover-subtitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+.book-cover-hint {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────
+   BOOK — open spread
+───────────────────────────────────────── */
+.book-open-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+
+.book-spread {
+  display: flex;
+  align-items: stretch;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.22),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  perspective: 1200px;
+  overflow: visible;
+}
+
+.book-page {
+  width: 310px;
+  min-height: 460px;
+  padding: 32px 26px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.book-page-left {
+  background: var(--co-paper-cream);
+  border-radius: 4px 0 0 4px;
+}
+
+/* Right page — 3-D flip target */
+.book-page-right {
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+  position: relative;
+  border-radius: 0 4px 4px 0;
+  /* no background here — lives in book-pg-front */
+}
+
+.book-page-right.book-is-flipping {
+  transform: rotateY(-150deg);
+}
+
+.book-page-right.book-no-trans {
+  transition: none !important;
+}
+
+/* Front face */
+.book-pg-front {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: var(--co-paper-warm);
+  padding: 32px 26px;
+  box-sizing: border-box;
+  border-radius: 0 4px 4px 0;
+  overflow: hidden;
+}
+
+/* Back face (tan paper back) */
+.book-pg-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: #e8d5c0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Centre spine shadow */
+.book-spine-shadow {
+  width: 18px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.14),
+    rgba(0, 0, 0, 0.04),
+    rgba(0, 0, 0, 0.1)
+  );
+  position: relative;
+  z-index: 2;
+}
+
+/* Page typography */
+.book-pg-num {
+  position: absolute;
+  bottom: 13px;
+  left: 20px;
+  font-size: 11px;
+  color: var(--co-accent-gold);
+  opacity: 0.75;
+}
+.book-pg-num.right {
+  left: auto;
+  right: 20px;
+}
+
+.book-pg-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--co-text-title);
+  margin: 0 0 10px;
+  line-height: 1.45;
+}
+
+.book-pg-rule {
+  height: 1px;
+  background: var(--co-divider);
+  margin-bottom: 14px;
+}
+
+.book-pg-body {
+  font-size: 13.5px;
+  color: var(--co-text-dark);
+  line-height: 1.95;
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* Nav buttons */
+.book-nav-btn {
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
+  color: var(--co-text-dark);
+  line-height: 1;
+  padding-bottom: 2px;
+}
+
+.book-nav-btn:hover {
+  transform: scale(1.18);
+  background: white;
+}
+
+.book-nav-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.book-close-btn {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  transition: background 0.15s ease, transform 0.15s ease;
+  color: var(--co-text-dark);
+  z-index: 20;
+  line-height: 1;
+}
+
+.book-close-btn:hover {
+  background: #e05a4e;
+  color: white;
+  transform: scale(1.12);
+}
+
+.book-counter {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   CARDS — sticky-note grid
+───────────────────────────────────────── */
+.cards-wrapper {
+  padding: 8px 4px 4px;
+}
+
+.cards-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+  margin: 0 0 20px;
+  letter-spacing: 0.06em;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card-item {
+  background: var(--co-paper-cream);
+  border-radius: 3px;
+  padding: 32px 20px 20px;
+  box-shadow:
+    2px 3px 12px rgba(0, 0, 0, 0.18),
+    0 1px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.card-item:hover {
+  transform: rotate(0deg) scale(1.03) !important;
+  box-shadow:
+    3px 5px 18px rgba(0, 0, 0, 0.24),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.card-tape {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 52px;
+  height: 18px;
+  border-radius: 2px;
+  opacity: 0.82;
+}
+
+.card-item-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--co-text-title);
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.card-item-body {
+  font-size: 13px;
+  color: var(--co-text-dark);
+  line-height: 1.85;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────
+   NOTEBOOK
+───────────────────────────────────────── */
+.notebook-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.notebook-spread {
+  display: flex;
+  align-items: stretch;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.22),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.notebook-page {
+  width: 300px;
+  min-height: 420px;
+  background: var(--co-paper-cream);
+  padding: 28px 24px 28px 48px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.notebook-left {
+  border-radius: 4px 0 0 4px;
+}
+
+.notebook-right {
+  border-radius: 0 4px 4px 0;
+  background: var(--co-paper-warm);
+}
+
+/* Ring binder holes */
+.notebook-hole {
+  position: absolute;
+  left: 18px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+}
+.notebook-page .notebook-hole:nth-child(1) { top:  52px; }
+.notebook-page .notebook-hole:nth-child(2) { top: 50%;   transform: translateY(-50%); }
+.notebook-page .notebook-hole:nth-child(3) { bottom: 52px; }
+
+/* Red margin line */
+.notebook-margin-line {
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: rgba(220, 120, 100, 0.3);
+}
+
+.notebook-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--co-text-title);
+  margin: 0 0 20px;
+  line-height: 1.45;
+}
+
+.notebook-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin-top: 8px;
+}
+
+.notebook-line {
+  height: 1px;
+  background: rgba(180, 160, 130, 0.35);
+}
+
+.notebook-date {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 11px;
+  color: var(--co-accent-gold);
+  opacity: 0.7;
+  margin: 0;
+}
+
+.notebook-body {
+  font-size: 13.5px;
+  color: var(--co-text-dark);
+  line-height: 2.0;
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* Centre binding */
+.notebook-binding {
+  width: 22px;
+  flex-shrink: 0;
+  background: #c8b8a2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 0;
+  box-shadow: inset -2px 0 4px rgba(0,0,0,0.1), inset 2px 0 4px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.notebook-ring {
+  width: 16px;
+  height: 16px;
+  border: 3px solid #a89880;
+  border-radius: 50%;
+  background: #d5c6b4;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────
+   ENVELOPE
+───────────────────────────────────────── */
+.envelope-wrapper {
+  position: relative;
+  width: 500px;
+  background: #f5e9d4;
+  border-radius: 4px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.22),
+    0 2px 8px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+/* V-shaped flap at top */
+.envelope-flap {
+  width: 0;
+  height: 0;
+  border-left:  250px solid transparent;
+  border-right: 250px solid transparent;
+  border-top:   100px solid #e8d5b8;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,0.1));
+}
+
+/* Bottom-left triangle edge */
+.envelope-bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 120px solid #e8d5b8;
+  border-right: 250px solid transparent;
+  z-index: 0;
+}
+.envelope-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 120px solid #e8d5b8;
+  border-left: 250px solid transparent;
+  z-index: 0;
+}
+
+.envelope-letter {
+  padding: 28px 40px 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.envelope-header-bar {
+  height: 3px;
+  background: linear-gradient(to right, var(--co-accent-gold), #e8c080, var(--co-accent-gold));
+  border-radius: 2px;
+  margin-bottom: 22px;
+  opacity: 0.7;
+}
+
+.envelope-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--co-text-title);
+  margin: 0 0 10px;
+  letter-spacing: 0.06em;
+}
+
+.envelope-intro {
+  font-size: 13.5px;
+  color: var(--co-text-dark);
+  line-height: 1.8;
+  margin: 0 0 20px;
+}
+
+.envelope-divider {
+  height: 1px;
+  background: var(--co-divider);
+  margin-bottom: 18px;
+}
+
+.envelope-lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.envelope-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--co-text-dark);
+}
+
+.envelope-icon {
+  font-size: 16px;
+  width: 22px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.envelope-label {
+  font-weight: 600;
+  color: var(--co-text-title);
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.envelope-value {
+  font-size: 13px;
+  word-break: break-all;
+}
+
+/* Wax seal */
+.envelope-seal {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 48px;
+}
+
+.envelope-seal::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 38%, #d85a4a, #a83228);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.22), inset 0 1px 4px rgba(255,255,255,0.15);
+  z-index: 1;
+}
+
+.envelope-seal-char {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255,255,255,0.82);
+  font-size: 20px;
+  pointer-events: none;
+  z-index: 2;
+  line-height: 1;
+}
+
+/* ─────────────────────────────────────────
+   Responsive — mobile
+───────────────────────────────────────── */
+@media (max-width: 640px) {
+  .co-container {
+    width: 100vw;
+    max-width: 100vw;
+  }
+
+  /* Book: hide left page, show only right (single-page mode) */
+  .book-open-wrapper {
+    gap: 6px;
+  }
+
+  .book-page-left {
+    display: none;
+  }
+
+  .book-spine-shadow {
+    display: none;
+  }
+
+  .book-page-right,
+  .book-pg-front {
+    border-radius: 4px;
+    width: 82vw;
+  }
+
+  .book-cover {
+    width: 80vw;
+    height: 56vw;
+  }
+
+  .book-spread {
+    justify-content: center;
+  }
+
+  /* Cards: 1 column */
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Notebook: stack pages */
+  .notebook-spread {
+    flex-direction: column;
+  }
+
+  .notebook-page {
+    width: 100%;
+  }
+
+  .notebook-left {
+    border-radius: 4px 4px 0 0;
+  }
+
+  .notebook-right {
+    border-radius: 0 0 4px 4px;
+  }
+
+  .notebook-binding {
+    width: 100%;
+    height: 22px;
+    flex-direction: row;
+    padding: 0 16px;
+  }
+
+  .notebook-ring {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Envelope */
+  .envelope-wrapper {
+    width: 90vw;
+  }
+
+  .envelope-flap {
+    border-left-width: 45vw;
+    border-right-width: 45vw;
+  }
+
+  .envelope-bottom-left {
+    border-right-width: 45vw;
+  }
+
+  .envelope-bottom-right {
+    border-left-width: 45vw;
+  }
+}

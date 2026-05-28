@@ -1,8 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link
@@ -20,19 +19,38 @@
     />
     <link rel="manifest" href="/media/site.webmanifest" />
 
-    <meta name="language" content="English" />
-    <meta property="og:locale" content="en_US" />
+    <meta name="language" content="Chinese" />
+    <meta
+      name="description"
+      content="武智敏的 AI 多模态训练师个人网站，展示图文生图、图片理解、数据质量建设和项目执行方法。"
+    />
+    <meta property="og:locale" content="zh_CN" />
     <meta property="og:type" content="website" />
+    <meta property="og:title" content="武智敏的小屋 | AI 多模态训练师" />
     <meta property="og:image" content="/media/og-image.webp" />
 
     <meta
       property="og:description"
-      content="A seasonal papercraft portfolio created with three.js and Blender."
+      content="武智敏的 AI 多模态训练师个人网站，一个温暖干净的 3D 纸艺小屋。"
     />
 
-    <title>Aimee Wei's Papercraft World</title>
+    <title>武智敏的小屋 | AI 多模态训练师</title>
   </head>
   <body>
+    <noscript>
+      <div class="browser-compatibility-message">
+        请使用 Chrome/Edge 访问，并启用 JavaScript 以查看 3D 个人网站。
+      </div>
+    </noscript>
+    <section class="visually-hidden" aria-labelledby="site-summary-title">
+      <h1 id="site-summary-title">武智敏的小屋</h1>
+      <p>武智敏，AI 多模态训练师，专注图文生图、图片理解、数据质量建设和任务执行落地。</p>
+      <h2>核心竞争力</h2>
+      <p>审美好，执行力强，能够把图像判断、Prompt 拆解、标注规则和质检标准转化为可落地的数据生产流程。</p>
+      <h2>项目经历</h2>
+      <p>跨境电商 AIGC 多模态模型训练数据建设项目，累计交付 1 万条高质量图文对数据，支撑 Text-to-Image 模型微调与上线。</p>
+      <p>电商多模态图文生成模型数据建设项目，累计交付 4 万条高质量图文对数据，支撑图生文 AI 助手训练与上线。</p>
+    </section>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -1,0 +1,36 @@
+[
+  {
+    "name": "wood",
+    "skipped": true,
+    "size_kb": 535.3
+  },
+  {
+    "name": "cream_paper",
+    "skipped": true,
+    "size_kb": 549.8
+  },
+  {
+    "name": "pink_paper",
+    "skipped": true,
+    "size_kb": 1256.3
+  },
+  {
+    "name": "yellow_paper",
+    "asset": "Paper006",
+    "package": "2K-JPG",
+    "source_file": "Paper006_2K-JPG_Color.jpg",
+    "size_kb": 538.6,
+    "source_url": "https://ambientcg.com/a/Paper006",
+    "download_url": "https://ambientcg.com/get?file=Paper006_2K-JPG.zip"
+  },
+  {
+    "name": "warm_orange_paper",
+    "skipped": true,
+    "size_kb": 609.5
+  },
+  {
+    "name": "decorative_back",
+    "skipped": true,
+    "size_kb": 781.7
+  }
+]

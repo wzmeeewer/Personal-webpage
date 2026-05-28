@@ -7,8 +7,7 @@
     "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "gen:models": "node scripts/process_models.js \"./raw_assets\" \"./src/Experience/models\" \"./public/models\""
+    "preview": "vite preview"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -1,32 +1,34 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useProgress } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import "./LoadingScreen.css";
+import { profile } from "../../data/profileData";
 import { useExperienceStore } from "../../store/useExperienceStore";
+import "./LoadingScreen.css";
+
+const preloadImages = ["red", "blue", "green", "orange"];
 
 const LoadingScreen = () => {
   const { progress, active } = useProgress();
-  const [maxProgress, setMaxProgress] = useState(0);
+  const [fallbackReady, setFallbackReady] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [gone, setGone] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
-  const setIsExperienceReady = useExperienceStore(
-    (state) => state.setIsExperienceReady,
-  );
+  const setIsExperienceReady = useExperienceStore((state) => state.setIsExperienceReady);
   const isSceneReady = useExperienceStore((state) => state.isSceneReady);
 
   const tlRef = useRef(null);
   const trRef = useRef(null);
   const blRef = useRef(null);
   const brRef = useRef(null);
-  const loadingRef = useRef(null);
 
   useEffect(() => {
-    if (active && progress === 100) return;
-    setMaxProgress((prev) => (progress > prev ? progress : prev));
-  }, [progress, active]);
+    const readyFallback = window.setTimeout(() => {
+      setFallbackReady(true);
+    }, 1200);
+
+    return () => window.clearTimeout(readyFallback);
+  }, []);
 
   useGSAP(() => {
     if (!revealed) return;
@@ -60,9 +62,10 @@ const LoadingScreen = () => {
         setGone(true);
       },
     });
-  }, [revealed]);
+  }, [revealed, setIsExperienceReady]);
 
-  const isLoaded = maxProgress === 100;
+  const displayProgress = fallbackReady ? 100 : Math.min(100, Math.round(progress));
+  const isLoaded = displayProgress === 100 || isSceneReady || (!active && progress === 100);
 
   if (gone) return null;
 
@@ -76,78 +79,30 @@ const LoadingScreen = () => {
 
         {!revealed && (
           <>
-            <div ref={loadingRef} className="loading-bar-container">
+            <div className="loading-bar-container">
+              <div className="loading-bar-fill" style={{ width: `${displayProgress}%` }} />
+            </div>
+
+            <div className="hero-copy">
+              <p className="hero-kicker">欢迎来到</p>
+              <h1 className="title">{profile.name}的小屋</h1>
+              <p className="hero-signature">{profile.signature}</p>
+              <p className="hero-subtitle">{profile.role}</p>
+              <p className="hero-description">{profile.intro}</p>
+            </div>
+
+            {preloadImages.map((imageName) => (
               <div
-                className="loading-bar-fill"
-                style={{ width: `${maxProgress}%` }}
-              />
-              <div
-                className="loading-bar-indicator"
+                key={imageName}
                 style={{
-                  left: `${maxProgress}%`,
-                  transform: "translate(-65px, -50%)",
-                  backgroundImage: `url("/images/${isHovered ? "head_smile" : "head"}.webp")`,
+                  backgroundImage: `url("/images/${imageName}.webp")`,
+                  width: 0,
+                  height: 0,
+                  visibility: "hidden",
+                  position: "absolute",
                 }}
               />
-            </div>
-            <h1 className="title">Aimee Wei's Papercraft World</h1>
-
-            {/* Lol don't do this this is cringe */}
-            <div
-              style={{
-                backgroundImage: 'url("/images/head_smile.webp")',
-                width: 0,
-                height: 0,
-                visibility: "hidden",
-                position: "absolute",
-              }}
-            />
-
-            <div
-              style={{
-                backgroundImage: 'url("/images/head.webp")',
-                width: 0,
-                height: 0,
-                visibility: "hidden",
-                position: "absolute",
-              }}
-            />
-            <div
-              style={{
-                backgroundImage: 'url("/images/red.webp")',
-                width: 0,
-                height: 0,
-                visibility: "hidden",
-                position: "absolute",
-              }}
-            />
-            <div
-              style={{
-                backgroundImage: 'url("/images/blue.webp")',
-                width: 0,
-                height: 0,
-                visibility: "hidden",
-                position: "absolute",
-              }}
-            />
-            <div
-              style={{
-                backgroundImage: 'url("/images/green.webp")',
-                width: 0,
-                height: 0,
-                visibility: "hidden",
-                position: "absolute",
-              }}
-            />
-            <div
-              style={{
-                backgroundImage: 'url("/images/orange.webp")',
-                width: 0,
-                height: 0,
-                visibility: "hidden",
-                position: "absolute",
-              }}
-            />
+            ))}
 
             <a
               href="https://github.com/andrewwoan/aimee-weis-papercraft-world"
@@ -164,7 +119,7 @@ const LoadingScreen = () => {
                 textDecoration: "underline",
               }}
             >
-              See full list of credits here!!
+              基于开源纸艺 3D 项目改造
             </a>
 
             <div
@@ -172,17 +127,17 @@ const LoadingScreen = () => {
               style={{
                 position: "absolute",
                 left: "50%",
-                bottom: "250px",
+                bottom: "205px",
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 transform: "translate(-50%, -50%)",
-                fontSize: "16px",
+                fontSize: "14px",
                 color: "rgb(233, 233, 233)",
               }}
             >
-              ~ Swipe/Scroll to navigate ~
+              ~ 拖拽环视 / 滚动探索 ~
             </div>
           </>
         )}
@@ -191,10 +146,8 @@ const LoadingScreen = () => {
           <button
             className="enter-button"
             onClick={() => setRevealed(true)}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
           >
-            Enter!
+            进入小屋
           </button>
         )}
       </div>
@@ -202,18 +155,8 @@ const LoadingScreen = () => {
       <svg width="0" height="0" style={{ position: "absolute" }}>
         <defs>
           <filter id="torn" x="-5%" y="-5%" width="110%" height="110%">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.065"
-              numOctaves="4"
-              seed="2"
-            />
-            <feDisplacementMap
-              in="SourceGraphic"
-              scale="12"
-              xChannelSelector="R"
-              yChannelSelector="G"
-            />
+            <feTurbulence type="fractalNoise" baseFrequency="0.065" numOctaves="4" seed="2" />
+            <feDisplacementMap in="SourceGraphic" scale="12" xChannelSelector="R" yChannelSelector="G" />
           </filter>
         </defs>
       </svg>
